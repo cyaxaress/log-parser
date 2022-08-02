@@ -13,7 +13,6 @@ class LogRecordController extends AbstractController
     #[Route('/count', name: 'log_record_count')]
     public function count(LogRecordRepository $logRecordRepository, Request $request): JsonResponse
     {
-        $filters = [];
         $query = $logRecordRepository->createQueryBuilder('lg');
 
         if ($request->query->has('serviceNames')) {
