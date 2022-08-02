@@ -32,7 +32,7 @@ class LogToDBCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $logFilePath = $input->getArgument("logFile") ?? __DIR__ . "/../../logs.txt";
+        $logFilePath = $input->getArgument("logFile") ?? __DIR__ . "/../../log.txt";
         if (!file_exists($logFilePath)){
             throw new \Exception("File does not exits!");
         }
@@ -51,7 +51,7 @@ class LogToDBCommand extends Command
         if ($file = fopen($logFile->getPath(), "r")) {
 
             // start read the log file line by line and save it to database.
-            $currentLine = 0;
+            $currentLine = 1;
             while (!feof($file)) {
                 $line = trim(fgets($file));
 

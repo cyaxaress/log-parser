@@ -21,7 +21,7 @@ class LogFile
     private ?\DateTimeInterface $checked_at = null;
 
     #[ORM\Column(type: Types::BIGINT)]
-    private ?string $cursor_line = null;
+    private ?int $cursor_line = null;
 
     public function getId(): ?int
     {
@@ -52,12 +52,12 @@ class LogFile
         return $this;
     }
 
-    public function getCursorLine(): ?string
+    public function getCursorLine(): ?int
     {
         return $this->cursor_line;
     }
 
-    public function setCursorLine(string $cursor_line): self
+    public function setCursorLine(int $cursor_line): self
     {
         $this->cursor_line = $cursor_line;
 
