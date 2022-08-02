@@ -22,6 +22,11 @@
   make enter
 ```
 
+## Run Migration
+```
+ php bin/console doctrine:schema:update --force
+```
+
 ## Run tests
 
 ```

@@ -39,6 +39,18 @@ class LogFileRepository extends ServiceEntityRepository
         }
     }
 
+    public function findOrCreateLogFileByPath($path): LogFile
+    {
+        $logFile = $this->findOneBy(['path' => $path]);
+        if (!$logFile) {
+            $logFile = new LogFile();
+            $logFile->setCursorLine(0)->setPath($path);
+            $this->add($logFile, true);
+        }
+
+        return $logFile;
+    }
+
 //    /**
 //     * @return LogFile[] Returns an array of LogFile objects
 //     */

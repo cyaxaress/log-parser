@@ -63,4 +63,9 @@ class LogFile
 
         return $this;
     }
+
+    public function isThisLineParsed($line): bool
+    {
+        return $line <= $this->getCursorLine();
+    }
 }

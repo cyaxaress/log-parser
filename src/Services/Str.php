@@ -21,4 +21,42 @@ class Str
     {
         return substr($string, $length * -1);
     }
+
+    public static function getRoute(string $line): string
+    {
+        return Str::between($line, "\"", "\"");
+    }
+
+    public static function getMethod($line)
+    {
+        $route = self::getRoute($line);
+        $routeParts = explode(" ", $route);
+
+        return $routeParts[0];
+    }
+
+    public static function getUri($line)
+    {
+        $route = self::getRoute($line);
+        $routeParts = explode(" ", $route);
+
+        return $routeParts[1];
+    }
+
+    public static function getDate(string $line): \DateTime
+    {
+        $str = Str::before(Str::between($line, "[", "]"), " +");
+        return \DateTime::createFromFormat("d/M/Y:H:i:s", $str);
+    }
+
+    public static function getStatusCode(string $line): string
+    {
+        return Str::lastCharacters($line, 3);
+    }
+
+    public static function getServiceName(string $line): string
+    {
+        return Str::before($line, " - -");
+    }
+
 }
